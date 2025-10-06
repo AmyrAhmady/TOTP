@@ -72,7 +72,7 @@ int compute_code(const char *key, unsigned long tm)
 	return truncatedHash;
 }
 
-cell AMX_NATIVE_CALL GoogleAuthenticatorCode(AMX* amx, cell* params)
+cell AMX_NATIVE_CALL GoogleAuthenticatorCode(AMX* amx, const cell* params)
 {
 	if (params[0] != 8)
 	{
@@ -81,7 +81,7 @@ cell AMX_NATIVE_CALL GoogleAuthenticatorCode(AMX* amx, cell* params)
 	}
 
 	char *string;
-	amx_StrParam(amx, params[1], string);
+	amx_StrParamChar(amx, params[1], string);
 
 	return compute_code(string, static_cast<int>(params[2]) / TIME_INTERVAL);
 }
